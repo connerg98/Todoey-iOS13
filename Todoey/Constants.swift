@@ -9,4 +9,8 @@
 
 struct K {
     static let toDoCell = "ToDoItemCell"
+    
+    struct UserDefs {
+        static let toDoItemArray = "ToDoItemArray"
+    }
 }

@@ -9,18 +9,33 @@
 import UIKit
 
 class ToDoListViewController: UITableViewController {
-    let items = ["Thor", "Pickle", "Killer"]
+    var items = ["Thor", "Pickle", "Killer"]
+    
+    let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
+        
+        if let toDoItems = defaults.array(forKey: K.UserDefs.toDoItemArray) as? [String] {
+            self.items = toDoItems
+        }
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
-            print("success")
+            self.items.append(textField.text!)
+            self.defaults.set(self.items, forKey: K.UserDefs.toDoItemArray)
+            self.tableView.reloadData()
+        }
+        
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Create new item"
+            textField = alertTextField
         }
         
         alert.addAction(action)
