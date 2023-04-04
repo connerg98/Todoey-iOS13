@@ -35,6 +35,9 @@
                     <navigationItem key="navigationItem" title="Title" id="Tbn-nb-nue">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iM3-0Y-RHx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="p5N-bX-1qY" id="b7G-WR-CsJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

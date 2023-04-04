@@ -17,7 +17,16 @@ class ToDoListViewController: UITableViewController {
         tableView.delegate = self
     }
 
-    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add Item", style: .default) { action in
+            print("success")
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true)
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -41,7 +50,7 @@ extension ToDoListViewController {
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
         } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
