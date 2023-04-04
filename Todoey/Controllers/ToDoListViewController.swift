@@ -9,7 +9,7 @@
 import UIKit
 
 class ToDoListViewController: UITableViewController {
-    var items = ["Thor", "Pickle", "Killer"]
+    var items: [Item] = []
     
     let defaults = UserDefaults.standard
 
@@ -18,7 +18,19 @@ class ToDoListViewController: UITableViewController {
 
         tableView.delegate = self
         
-        if let toDoItems = defaults.array(forKey: K.UserDefs.toDoItemArray) as? [String] {
+        let newItem = Item()
+        newItem.title = "Thor"
+        items.append(newItem)
+        
+        let newItem1 = Item()
+        newItem1.title = "Killer"
+        items.append(newItem1)
+        
+        let newItem2 = Item()
+        newItem2.title = "Pickle"
+        items.append(newItem2)
+        
+        if let toDoItems = defaults.array(forKey: K.UserDefs.toDoItemArray) as? [Item] {
             self.items = toDoItems
         }
     }
@@ -28,7 +40,10 @@ class ToDoListViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
-            self.items.append(textField.text!)
+            let newItem = Item()
+            newItem.title = textField.text!
+            
+            self.items.append(newItem)
             self.defaults.set(self.items, forKey: K.UserDefs.toDoItemArray)
             self.tableView.reloadData()
         }
@@ -53,7 +68,12 @@ extension ToDoListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.toDoCell, for: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+        
+        let item = items[indexPath.row]
+        
+        cell.textLabel?.text = item.title
+        cell.accessoryType = item.isDone ? .checkmark : .none
+        
         return cell
     }
 }
@@ -62,11 +82,10 @@ extension ToDoListViewController {
 
 extension ToDoListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        
+        items[indexPath.row].isDone.toggle()
+        
+        tableView.reloadData()
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

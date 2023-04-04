@@ -55,6 +55,24 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		AA8C721929DBDFDE007BC25B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB2BE4FF239524DB00FB933B /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA8C721A29DBE015007BC25B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EB2BE502239524DC00FB933B /* Assets.xcassets */,
+				AA03AE7B29DA869500CCE0CF /* Constants.swift */,
+				EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EB2BE4ED239524DB00FB933B = {
 			isa = PBXGroup;
 			children = (
@@ -76,11 +94,9 @@
 			children = (
 				EB2BE4F9239524DB00FB933B /* AppDelegate.swift */,
 				AA8C721729DBDF39007BC25B /* Model */,
+				AA8C721929DBDFDE007BC25B /* Views */,
 				AA8C721829DBDF4E007BC25B /* Controllers */,
-				AA03AE7B29DA869500CCE0CF /* Constants.swift */,
-				EB2BE4FF239524DB00FB933B /* Main.storyboard */,
-				EB2BE502239524DC00FB933B /* Assets.xcassets */,
-				EB2BE504239524DC00FB933B /* LaunchScreen.storyboard */,
+				AA8C721A29DBE015007BC25B /* Supporting Files */,
 				EB2BE507239524DC00FB933B /* Info.plist */,
 			);
 			path = Todoey;
